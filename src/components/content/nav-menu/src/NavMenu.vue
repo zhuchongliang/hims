@@ -73,7 +73,10 @@ import {
   FolderOpened,
   DocumentAdd,
   DocumentRemove,
-  Coin
+  Coin,
+  DocumentDelete,
+  Memo,
+  TrendCharts
 } from '@element-plus/icons-vue'
 
 import type { IMenuTree } from "@/utils/map-menu"
@@ -111,7 +114,10 @@ const map = {
   "prescription": DocumentRemove,
   "enter": DocumentAdd,
   "odrug": Coin,
-  "sdrug": Coin
+  "sdrug": Coin,
+  "out": DocumentDelete,
+  "purchase": Memo,
+  "reserve": TrendCharts
 }
 
 const handleItemClick = (item: IMenuTree, index: string) => {

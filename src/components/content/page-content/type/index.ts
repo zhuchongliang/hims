@@ -6,4 +6,5 @@ export type IContentConfig = Partial<{
   showIndexColumn: boolean
   showPagination: boolean
   showEditButton: boolean
+  notShowDeleteButton: boolean
 }>

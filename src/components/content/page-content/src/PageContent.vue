@@ -20,13 +20,14 @@
       </template>
       <template #handler="scope">
         <el-button
-        v-if="contentConfig.showEditButton"
-        :icon="Edit"
-        link
-        size="small"
-        @click="handleEditClick(scope.row)"
+          v-if="contentConfig.showEditButton"
+          :icon="Edit"
+          link
+          size="small"
+          @click="handleEditClick(scope.row)"
         >编辑</el-button>
         <el-button
+          v-if="!contentConfig.showDeleteButton"
           link
           :icon="Delete"
           size="small"

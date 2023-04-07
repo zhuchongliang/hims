@@ -39,6 +39,15 @@ const useSystemStore = defineStore("system", () => {
   const drugList = ref<any[]>([]);
   const drugTotalCount = ref(0);
 
+  const reserveList = ref<any[]>([]);
+  const reserveTotalCount = ref(0);
+
+  const outList = ref<any[]>([]);
+  const outTotalCount = ref(0);
+
+  const purchaseList = ref<any[]>([]);
+  const purchaseTotalCount = ref(0);
+
   const getPageItemListAction = async (pageName: string, pageInfo: IPageProps) => {
     const result = await getPageItemList(pageName, {
       offset: ((pageInfo.currentPage) - 1) * pageInfo.pageSize,
@@ -80,6 +89,18 @@ const useSystemStore = defineStore("system", () => {
       case "drug":
         drugList.value = list;
         drugTotalCount.value = totalCount
+        break;
+      case "reserve":
+        reserveList.value = list;
+        reserveTotalCount.value = totalCount
+        break;
+      case "out":
+        outList.value = list;
+        outTotalCount.value = totalCount
+        break;
+      case "purchase":
+        purchaseList.value = list;
+        purchaseTotalCount.value = totalCount
         break;
     }
   }
@@ -139,6 +160,18 @@ const useSystemStore = defineStore("system", () => {
         drugList.value = list;
         drugTotalCount.value = totalCount
         break;
+      case "reserve":
+        reserveList.value = list;
+        reserveTotalCount.value = totalCount
+        break;
+      case "out":
+        outList.value = list;
+        outTotalCount.value = totalCount
+        break;
+      case "purchase":
+        purchaseList.value = list;
+        purchaseTotalCount.value = totalCount
+        break;
     }
   }
 
@@ -164,6 +197,12 @@ const useSystemStore = defineStore("system", () => {
     prescriptionTotalCount,
     drugList,
     drugTotalCount,
+    reserveList,
+    reserveTotalCount,
+    purchaseList,
+    purchaseTotalCount,
+    outList,
+    outTotalCount,
     getPageItemListAction,
     deleteListItemAction,
     editPageListItemAction,
