@@ -5,7 +5,7 @@ import type { Ref } from "vue"
 
 const usePageContent = (selectionChangeCallBack?: (selections: any[]) => void): [
   (selections: any[]) => void,
-  () => void,
+  (page?: number) => void,
   Ref<InstanceType<typeof PageContent>> | Ref<undefined>
 ] => {
   const pageContentRef = ref<InstanceType<typeof PageContent>>();

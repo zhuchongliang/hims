@@ -6,7 +6,7 @@
       </el-icon>
     </div>
     <div class="user-info">
-      <el-popover placement="top" :width="260" trigger="click">
+      <el-popover placement="top" :width="260" trigger="click" v-model:visible="visible">
         <template #reference>
           <div class="user-info-base">
             <div class="avatar">
@@ -27,7 +27,7 @@
               </span>
             </div>
             <div class="user-info-popper-bottom">
-              <el-button type="primary" @click="">个人资料</el-button>
+              <el-button type="primary" @click="handleClick">个人资料</el-button>
               <el-button type="danger" @click="userStore.loginOut">注销</el-button>
             </div>
           </div>
@@ -38,14 +38,20 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed } from 'vue';
+import { onMounted, computed, ref } from 'vue';
 
 import { FullScreen } from '@element-plus/icons-vue';
 import  useFullscreen from '../hooks/useFullScreen';
 
 import useUserStore from "@/stores/user"
 
+const emit = defineEmits<{
+  (event: "myClick"): void
+}>()
+
 const [, setFullscreen] = useFullscreen();
+
+const visible = ref(false);
 
 const circleUrl = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png';
 const avatarUrl = computed(() => userInfo.value?.avatar_url || circleUrl);
@@ -55,6 +61,11 @@ onMounted(() => {
   userStore.getUserInfo();
 })
 const userInfo = computed(() => userStore.userEntireInfo);
+
+const handleClick = () => {
+  emit("myClick");
+  visible.value = false;
+}
 </script>
 <style scoped lang="less">
 .menus-content {

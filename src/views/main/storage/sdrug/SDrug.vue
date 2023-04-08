@@ -28,8 +28,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
 
-import { useRoute } from "vue-router"
-
 import { PageSearch } from '@/components/content/page-search';
 import { PageContent } from "@/components/content/page-content";
 import { PageModal } from "@/components/content/page-modal";

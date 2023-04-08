@@ -17,7 +17,7 @@
       </el-tab-pane>
     </el-tabs>
     <div class="header-menus">
-      <HeaderMenu />
+      <HeaderMenu @myClick="handleMyClick"/>
     </div>
   </div>
 </template>
@@ -59,6 +59,15 @@ function tabChange(name: string) {
   let activeTab = tabList.value.find(v => v.name === name);
   emit("selectTabItem", activeTab!.name)
   router.push(activeTab!.url);
+}
+
+const handleMyClick = () => {
+  tabAdd({
+    name: "/main/my",
+    label: "个人中心",
+    url: "/main/my"
+  });
+  emit("selectTabItem", "/main/my");
 }
 
 defineExpose({

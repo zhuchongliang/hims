@@ -15,13 +15,13 @@
         <el-button
           :type="row['status'] ? 'success' : 'danger'"
           size="small"
-          :disable="row['status']"
+          :disabled="!!row['status']"
           @click="handleStatusChange(row)"
         >
           {{row["status"] ? "审核完成": "正在审核"}}
         </el-button>
       </template>
-    </PageContent>>
+    </PageContent>
   </div>
 </template>
 
@@ -55,11 +55,15 @@ const [ , , handleSearch ] = usePageSearch(
 );
 const [ , handlePageChange, pageContentRef ] = usePageContent()
 
-const handleStatusChange = (row: any) => {
-  systemStore.editPageListItemAction(pageName.value, {
-    ...row,
+const handleStatusChange = async (row: any) => {
+  await systemStore.editPageListItemAction(pageName.value, {
+    id: row.id,
+    officeId: row.officeId,
+    drugId: row.drugId,
+    count: row.count,
     status: 1
   })
+  handlePageChange(0);
 }
 </script>
 

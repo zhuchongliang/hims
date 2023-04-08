@@ -5,4 +5,8 @@ export interface IUserEntireInfo {
   updateAt: string,
   avatar_url: string,
   roleId: number
+  emall: string
+  phone: string
+  gender: number
+  address: string
 }

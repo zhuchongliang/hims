@@ -27,7 +27,7 @@
           @click="handleEditClick(scope.row)"
         >编辑</el-button>
         <el-button
-          v-if="!contentConfig.showDeleteButton"
+          v-if="!contentConfig.notShowDeleteButton"
           link
           :icon="Delete"
           size="small"
