@@ -80,7 +80,6 @@ const useUserStore =  defineStore("user", () => {
         cache.set("userMenu", userMenu.value)
       }
     }
-
     if (cache.get("entireMenu")) {
       let entireMenu = cache.get("entireMenu");
       entireMenu.value = entireMenu;

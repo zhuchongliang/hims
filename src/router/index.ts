@@ -5,7 +5,7 @@ import cache from '@/utils/cache'
 const routes: RouteRecordRaw[] = [
   {
     path: "/",
-    redirect: "/main"
+    redirect: "/main/dashboard"
   },
   {
     path: "/main",

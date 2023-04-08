@@ -8,7 +8,7 @@ let pageContentConfig: IContentConfig = {
     { prop: 'updateAt', label: '更新时间', minWidth: '250', slotName: 'updateAt' },
   ],
   showIndexColumn: true,
-  showSelectColumn: false,
+  showSelectColumn: false
 }
 
 export default pageContentConfig;
