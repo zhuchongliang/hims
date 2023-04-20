@@ -1,5 +1,5 @@
 <template>
-  <div class="user">
+  <div class="role">
     <PageSearch
       v-bind="pageSearchConifg"
       :page-name="pageName"
@@ -23,15 +23,19 @@
       :other-info="otherInfo"
       ref="pageModalRef"
     >
-      <el-tree
-        class="menu-tree"
-        ref="elTreeRef"
-        :data="menuList"
-        show-checkbox
-        node-key="id"
-        @check="handleMenuCheckChange"
-        :props="{ label: 'name', children: 'children' }"
-      />
+      <div class="tree">
+        <label class="tree-label">权限菜单</label>
+        <el-tree
+          default-expand-all
+          class="menu-tree"
+          ref="elTreeRef"
+          :data="menuList"
+          show-checkbox
+          node-key="id"
+          @check="handleMenuCheckChange"
+          :props="{ label: 'name', children: 'children' }"
+        />
+      </div>
     </PageModal>
   </div>
 </template>
@@ -97,7 +101,23 @@ const handleMenuCheckChange = (data1: any, data2: any) => {
 }
 </script>
 
-<style scoped>
-
+<style lang="less">
+.role {
+  .tree {
+    display: flex;
+    .tree-label {
+      height: 32px;
+      width: 68px;
+      text-align: right;
+      padding: 0 12px 0 0;
+      line-height: 32px;
+    }
+    .el-tree {
+      .is-leaf {
+        display: none;
+      }
+    }
+  }
+}
 </style>
 

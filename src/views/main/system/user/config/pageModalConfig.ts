@@ -5,17 +5,7 @@ export const modalConfig: IForm = {
   formItems: [
     { field: 'name', type: 'input', label: '用户名', placeholder: '请输入用户名' },
     { field: 'pwd', type: "input", label: "密码", placeholder: "请输入密码" },
-    {
-      field: "roleId",
-      type: "select",
-      label: "角色id",
-      placeholder: "请选择角色id",
-      options: [
-        {value: "1", label: "1"},
-        {value: "2", label: "2"},
-        {value: "3", label: "3"}
-      ]
-    },
+    { field: 'roleId', type: "input", label: "角色id", placeholder: "请输入角色id" },
     {
       field: 'enable',
       type: 'select',

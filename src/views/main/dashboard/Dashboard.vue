@@ -62,4 +62,7 @@ echartsStore.getAnalysisDataAction();
   height: 30px;
   line-height: 30px;
 }
+.row {
+  width: 100%;
+}
 </style>

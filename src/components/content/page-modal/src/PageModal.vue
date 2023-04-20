@@ -3,21 +3,26 @@
     <el-dialog
       :title="pageModalConfig.title"
       width="30%"
+
       v-model="dialogVisable"
       center
       destroy-on-close
     >
-      <Form
-        v-bind="pageModalConfig"
-        v-model="formData"
-      />
-    <slot></slot>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogVisable = false">取消</el-button>
-        <el-button type="primary" @click="handleConfirmClick">确定</el-button>
-      </span>
-    </template>
+      <el-scrollbar>
+        <div class="page-modal-form">
+          <Form
+            v-bind="pageModalConfig"
+            v-model="formData"
+          />
+          <slot></slot>
+        </div>
+      </el-scrollbar>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dialogVisable = false">取消</el-button>
+          <el-button type="primary" @click="handleConfirmClick">确定</el-button>
+        </span>
+      </template>
     </el-dialog>
   </div>
 </template>
@@ -78,6 +83,8 @@ defineExpose({
 })
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+.page-modal-form {
+  max-height: 300px;
+}
 </style>

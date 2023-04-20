@@ -27,11 +27,7 @@ class Request {
   }
 
   request<T = any>(config: AxiosRequestConfig) {
-    return this.instance.request<any, T>(config).then((res) => {
-      return res;
-    }, (err) => {
-      console.log(err);
-    })
+    return this.instance.request<any, T>(config);
   }
 }
 export default Request;

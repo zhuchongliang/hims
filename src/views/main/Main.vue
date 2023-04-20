@@ -2,12 +2,14 @@
   <div class="main">
     <el-container class="main-content">
       <el-aside :width="collapse ? '64px' : '260px'" class="page-aside">
-        <NavMenu
-          :collapse="collapse"
-          @foldAside="handleFoldAside"
-          @selectMenuItem="handleSelectMenuItem"
-          :activeMenuItem="activeMenuItem"
-        ></NavMenu>
+        <el-scrollbar>
+          <NavMenu
+            :collapse="collapse"
+            @foldAside="handleFoldAside"
+            @selectMenuItem="handleSelectMenuItem"
+            :activeMenuItem="activeMenuItem"
+          ></NavMenu>
+        </el-scrollbar>
       </el-aside>
       <el-container class="page">
         <el-header class="page-header" height="100px">
@@ -15,11 +17,10 @@
             ref="navHeaderRef"
             @selectTabItem="handleSelectTabItem"
           />
-
         </el-header>
         <el-main class="page-content">
           <div class="content">
-            <router-view></router-view>
+              <router-view></router-view>
           </div>
         </el-main>
       </el-container>

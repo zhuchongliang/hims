@@ -5,26 +5,33 @@
     label-width="80px"
     :model="regisInfo"
     ref="formRef"
+    label-position="top"
   >
     <el-form-item label="用户名" prop="name">
-      <el-input v-model="regisInfo.name"/>
+      <el-input
+        v-model="regisInfo.name"
+        size="large"
+      />
     </el-form-item>
     <el-form-item label="密码" prop="password" required>
       <el-input
+        size="large"
         type="password"
         v-model="regisInfo.password"
       />
     </el-form-item>
     <el-form-item label="确认密码" prop="confirmPwd" required>
       <el-input
+        size="large"
         type="password"
         v-model="regisInfo.confirmPwd"
       />
     </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="handleReset">重置</el-button>
-      <el-button @click="handleRegis">注册</el-button>
-    </el-form-item>
+    <div class="form-button">
+      <el-button  round size="large" @click="handleReset">重置</el-button>
+      <el-button  round size="large" type="primary" @click="handleRegis">注册</el-button>
+    </div>
+    <p class="form-footer">已有账号?点击<router-link to="/login">立即登录</router-link></p>
   </el-form>
 </template>
 
@@ -96,6 +103,26 @@ const handleReset = () => {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+@import "@/assets/css/theme.less";
+.form-button {
+  margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 20px;
+  height: 94px;
+  width: 100%;
+  .el-button {
+    margin-left: 0;
+  }
+}
+.form-footer {
+  text-align: center;
+  font-size: 15px;
+  a {
+    color: @font-color;
+  }
+}
 </style>

@@ -19,7 +19,7 @@
           {{row["status"] ? "审核完成": "正在审核"}}
         </el-button>
       </template>
-    </PageContent>>
+    </PageContent>
     <PageModal
       :page-name="pageName"
       :default-info="defaultInfo"
