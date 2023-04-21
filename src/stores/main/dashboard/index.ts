@@ -2,12 +2,13 @@ import { defineStore } from "pinia";
 
 import { ref } from "vue"
 
-import { getAnalysisData } from "@/service/main/dashboard";
-import type { IDrugAnalysisList } from "@/service/main/dashboard/type";
+import { getAnalysisData, getTopPanelData } from "@/service/main/dashboard";
+import type { IDrugAnalysisList, ITopPanelData } from "@/service/main/dashboard/type";
 
 const useEchartsStore = defineStore("echartsStore", () => {
   const drugPrescriptionList = ref<IDrugAnalysisList>([]);
   const drugPurchaseList = ref<IDrugAnalysisList>([]);
+  const topPanelData = ref<ITopPanelData>([]);
 
   const getAnalysisDataAction = async () => {
     const result = await getAnalysisData("/prescription");
@@ -18,10 +19,15 @@ const useEchartsStore = defineStore("echartsStore", () => {
     if (result1) {
       drugPurchaseList.value = result1;
     }
+    const result2 = await getTopPanelData();
+    if (result2) {
+      topPanelData.value = result2;
+    }
   }
   return {
     drugPrescriptionList,
     drugPurchaseList,
+    topPanelData,
     getAnalysisDataAction
   }
 })

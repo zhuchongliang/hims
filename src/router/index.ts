@@ -16,16 +16,25 @@ const routes: RouteRecordRaw[] = [
   {
     path: "/login",
     component: () => import("@/views/login/Login.vue"),
-    name: "login"
+    name: "login",
+    meta: {
+      title: "登录页面",
+    },
   },
   {
     path: "/regis",
     component: () => import("@/views/regis/Regis.vue"),
-    name: "regis"
+    name: "regis",
+    meta: {
+      title: "注册页面",
+    },
   },
   {
     path: "/:pathMatch(.*)*",
     component: () => import("@/views/not-found/NotFound.vue"),
+    meta: {
+      title: "404NotFound",
+    },
     name: "notFound"
   }
 ]
@@ -35,11 +44,12 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
 })
 
-router.beforeEach((from) => {
+router.beforeEach((to, from) => {
   const token = cache.get("token");
-  if (!token && from.path !== "/login" && from.path !== "/regis") {
+  if (!token && to.path !== "/login" && to.path !== "/regis") {
     return "/login"
   }
+  document.title = to.meta.title as string;
 })
 
 export default router

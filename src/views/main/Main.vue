@@ -80,8 +80,7 @@ onMounted(async () => {
 .page {
   height: 100%;
 }
-.page-aside,
-.page-content {
+.page-aside {
   background-color: #fff;
 }
 .page-aside {
@@ -103,5 +102,9 @@ onMounted(async () => {
 .page-content {
   padding: 0;
   margin: 16px 16px 0;
+  overflow: visible;
+  .content {
+    background-color: #fff;
+  }
 }
 </style>

@@ -46,7 +46,7 @@ import { ref, computed, nextTick } from "vue"
 import { useRoute } from "vue-router"
 import useUserStore from "@/stores/user";
 import  { ElTree } from "element-plus"
-import { deleteEmptyChildren } from "@/utils/map-menu"
+import { deleteEmptyChildren, mapMenuToLeaf } from "@/utils/map-menu"
 
 import { PageSearch } from '@/components/content/page-search';
 import { PageContent } from "@/components/content/page-content";
@@ -88,7 +88,8 @@ const [ handleSelectionChange, handlePageChange, pageContentRef ] = usePageConte
 
 const [ defaultInfo, pageModalRef, handleNew, handleEdit ] = usePageModal(undefined, (item) => {
   nextTick(() => {
-    elTreeRef.value?.setCheckedKeys(item.menuList, false);
+    let result = mapMenuToLeaf(item.menuList);
+    elTreeRef.value?.setCheckedKeys(result, true);
   })
 });
 

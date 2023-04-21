@@ -6,7 +6,8 @@ export interface IMenuTree {
   type: number,
   children: IMenuTree[],
   iconName: string,
-  url: string
+  url: string,
+  id: number
 }
 
 export function mapMenuToTree(menuList: IMenuList): IMenuTree[] {
@@ -83,5 +84,22 @@ export function deleteEmptyChildren(userMenu: any[], result: any[]) {
       };
     }
   }
+  return result;
+}
+
+export function mapMenuToLeaf(menuList: any[]): number[] {
+  let tree =  mapMenuToTree(menuList);
+  let result: number[] = [];
+
+  function recurse(tree: IMenuTree[]) {
+    for (let node of tree) {
+      if (node.children.length === 0) {
+        result.push(node.id);
+      } else {
+        recurse(node.children);
+      }
+    }
+  }
+  recurse(tree);
   return result;
 }

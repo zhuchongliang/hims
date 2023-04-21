@@ -15,3 +15,9 @@ export function updateUserEntireInfo(id: number, userInfo: any) {
     data: userInfo
   })
 }
+export function getRecordList() {
+  return request.request({
+    url: `/record/list`,
+    method: "get"
+  })
+}

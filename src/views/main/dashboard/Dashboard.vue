@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div class="dashboard">
+    <el-row :gutter="20">
+      <template v-for="item in topPanelData" :key="item.title">
+        <el-col :md="12" :lg="6" :xl="6">
+          <statistical-panel :panelData="item" />
+        </el-col>
+      </template>
+    </el-row>
     <el-row :gutter="10" class="row">
       <el-col :span="12">
         <el-card>
@@ -29,6 +36,7 @@
 import { computed } from "vue"
 
 import { BarEchart } from "@/components/content/page-echarts/index";
+import { StatisticalPanel } from "@/components/content/statistical-panel";
 import useEchartsStore from "@/stores/main/dashboard/index"
 
 const echartsStore = useEchartsStore();
@@ -53,16 +61,21 @@ const prescriptionAnalsisData = computed(() => {
   return { labels, values };
 });
 
+const topPanelData = computed(() => echartsStore.topPanelData);
+
 echartsStore.getAnalysisDataAction();
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.dashboard {
+  background-color: #f5f5f5;
+  .el-row {
+    width: 100%;
+  }
+}
 .card-header {
   text-align: center;
   height: 30px;
   line-height: 30px;
-}
-.row {
-  width: 100%;
 }
 </style>

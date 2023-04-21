@@ -1,6 +1,7 @@
 <template>
   <div class="my">
-    <el-upload
+    <div class="userInfo">
+      <el-upload
       class="avatar-uploader"
       action="/api/upload/avatar"
       :headers="{ 'Authorization': `Bearer ${cache.get('token')}`}"
@@ -83,14 +84,32 @@
     <el-dialog v-model="dialogVisible">
       <img w-full :src="previewUrl" alt="Preview Image" />
     </el-dialog>
+    </div>
+    <div class="handle-record">
+      <div class="handle-record-title">操作日志</div>
+      <div class="handle-record-content">
+        <el-scrollbar>
+          <el-timeline>
+            <el-timeline-item
+              v-for="(activity, index) in activities"
+              :key="index"
+              :timestamp="utcToDateTimeFormat(activity.createAt)"
+            >
+              {{ activity.content }}
+            </el-timeline-item>
+          </el-timeline>
+        </el-scrollbar>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import useUserStore from '@/stores/user';
 import cache from '@/utils/cache';
+import { utcToDateTimeFormat } from "@/utils/date-format"
 
-import { watch, nextTick, ref } from "vue"
+import { watch, nextTick, ref, computed } from "vue"
 
 import type { UploadInstance,  UploadRawFile, UploadProps } from 'element-plus'
 
@@ -149,29 +168,57 @@ const handlePictureCardPreview = () => {
 const handleModalClick = (event) => {
   event.stopPropagation();
 }
-
+userStore.getRecordListAction();
+const activities = computed(() => userStore.recordList);
 </script>
 
 <style lang="less">
+@import "@/assets/css/theme.less";
 .my {
-  padding: 50px 100px;
-  width: 600px;
-  img {
-    width: 100%;
-    height: 100%;
-    max-width: 800px;
-    max-height: 600px;
-    object-fit: contain;
-  }
-  .el-form {
+  background-color: #f5f5f5;
+  display: flex;
+  .userInfo {
+    background-color: #fff;
+    padding: 60px;
+    margin-right: 40px;
+    width: 550px;
+    border-radius: 5px;
+    border-top: 3px solid @theme-color;
+    img {
+      width: 100%;
+      height: 100%;
+      max-width: 800px;
+      max-height: 600px;
+      object-fit: contain;
+    }
+    .el-form {
     .el-form-item {
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(194, 198, 206, .5);
     }
   }
+  }
+  .handle-record {
+    background-color: #fff;
+    width: 650px;
+    &-title {
+      padding: 18px 20px;
+      font-size: 14px;
+      color: #303133;
+      border-bottom: 1px solid #e4e7ed;
+    }
+    &-content {
+      height: 700px;
+      padding: 18px 20px;
+      .el-timeline {
+        margin-top: 4px;
+      }
+    }
+  }
 }
 .avatar-uploader {
-  margin: 0 0 40px 70px;
+  text-align: center;
+  margin-bottom:  40px;
   .preview {
     width: 100%;
     height: 100%;

@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { reactive, ref } from "vue"
 
 import { getEntireMenuList, getMenuList, login } from "@/service/login/index"
-import { getUserEntireInfo, updateUserEntireInfo } from "@/service/main/my";
+import { getUserEntireInfo, updateUserEntireInfo, getRecordList } from "@/service/main/my";
 import { regis } from "@/service/regis";
 
 import type { IUserInfo } from "./type"
@@ -27,6 +27,7 @@ const useUserStore =  defineStore("user", () => {
   const userMenu = ref<IMenuTree[]>();
   const userEntireInfo = ref<IUserEntireInfo>();
   const menuEntireInfo = ref<any[]>();
+  const recordList = ref<any[]>()
 
   const accountLogin = async (account: IAccount) => {
     const res = await login(account);
@@ -101,17 +102,24 @@ const useUserStore =  defineStore("user", () => {
     return result;
   }
 
+  const getRecordListAction = async () => {
+    const result = await getRecordList();
+    result && (recordList.value = result);
+  }
+
   return {
     userInfo,
     userMenu,
     userEntireInfo,
     menuEntireInfo,
+    recordList,
     accountLogin,
     accountRegis,
     loadLoginCache,
     loginOut,
     getUserInfo,
-    editUserInfo
+    editUserInfo,
+    getRecordListAction
   }
 })
 

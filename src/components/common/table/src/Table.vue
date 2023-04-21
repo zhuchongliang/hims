@@ -114,7 +114,7 @@ const handCurrentPageChange = (currentPage: number) => {
 
 <style scoped lang="less">
 .table-pagination {
-  margin-top: 20px;
+  padding: 20px 0;
   display: flex;
   justify-content: space-between;
 }
