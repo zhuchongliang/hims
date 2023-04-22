@@ -38,7 +38,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, computed, ref } from 'vue';
+import { onMounted, computed, ref, nextTick } from 'vue';
 
 import { FullScreen } from '@element-plus/icons-vue';
 import  useFullscreen from '../hooks/useFullScreen';
@@ -54,7 +54,9 @@ const [, setFullscreen] = useFullscreen();
 const visible = ref(false);
 
 const circleUrl = 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png';
-const avatarUrl = computed(() => userInfo.value?.avatar_url || circleUrl);
+const avatarUrl = computed(() => {
+  return userInfo.value?.avatar_url || circleUrl;
+});
 
 const userStore = useUserStore();
 onMounted(() => {

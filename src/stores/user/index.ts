@@ -72,6 +72,11 @@ const useUserStore =  defineStore("user", () => {
       addRoute(cacheUserMenu);
 
       //重新设置路由表
+      await getUserInfo();
+      if (userEntireInfo.value) {
+        userInfo.roleId = userEntireInfo.value.roleId;
+        userInfo.officeId = userEntireInfo.value.officeId;
+      }
       const menuList = await getMenuList(userInfo.roleId!);
       if (menuList) {
         const oldRoutes = mapMenuToRoutes(cacheUserMenu);

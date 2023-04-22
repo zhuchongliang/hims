@@ -9,4 +9,5 @@ export interface IUserEntireInfo {
   phone: string
   gender: number
   address: string
+  officeId: number
 }

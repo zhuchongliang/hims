@@ -143,8 +143,11 @@ const handleButtonClick = async () => {
     isChanging.value = false;
     await userStore.editUserInfo(newUserInfo);
     uploadRef.value?.submit();
-    nextTick(() => {
-      userStore.getUserInfo();
+    nextTick(async () => {
+      await userStore.getUserInfo();
+      if (userStore.userEntireInfo) {
+        userStore.userEntireInfo.avatar_url = previewUrl.value;
+      }
     })
   }
 }

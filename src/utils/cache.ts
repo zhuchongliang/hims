@@ -1,18 +1,18 @@
 class Cache {
   get(key: string) {
-    let value = window.localStorage.getItem(key);
+    let value = window.sessionStorage.getItem(key);
     if (value) {
       return JSON.parse(value);
     }
   }
   set(key: string, value: any) {
-    window.localStorage.setItem(key, JSON.stringify(value));
+    window.sessionStorage.setItem(key, JSON.stringify(value));
   }
   delete(key: string) {
-    window.localStorage.removeItem(key);
+    window.sessionStorage.removeItem(key);
   }
   clear() {
-    window.localStorage.clear()
+    window.sessionStorage.clear()
   }
 }
 

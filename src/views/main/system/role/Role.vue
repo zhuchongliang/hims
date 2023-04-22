@@ -87,6 +87,7 @@ const [ handleSelectionChange, handlePageChange, pageContentRef ] = usePageConte
 )
 
 const [ defaultInfo, pageModalRef, handleNew, handleEdit ] = usePageModal(undefined, (item) => {
+  defaultInfo.value.menuList = item.menuList.map(v  => v.id);
   nextTick(() => {
     let result = mapMenuToLeaf(item.menuList);
     elTreeRef.value?.setCheckedKeys(result, true);

@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, onMounted, defineProps, withDefaults, watchEffect } from 'vue'
+import { ref, onMounted,  watchEffect } from 'vue'
 import { useEcharts } from '../hooks/useEcharts'
 import type { EChartsOption } from 'echarts'
 
